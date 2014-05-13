@@ -1,0 +1,174 @@
+<snippets namespace="" license="BSD" filetypes="Bash" authors="Bruno Gonçalves Araujo" name="Kdialog">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Calendário</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Caixa de diálogo calendário, retorna a data selecionada
+kdialog --title $"Título" --calendar  $"Texto que desejar"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Cores</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Diálogo de cores para selecionar uma cor
+kdialog --title $"Título" --getcolor
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Entrada_de_texto_de_uma_linha</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Diálogo de entrada de texto de uma linha
+kdialog --title $"Título"  --inputbox  $"Descrição"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Entrada_de_texto_multilinhas</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Diálogo para inserir textos, os números ao final são quantidade de linhas e colunas
+kdialog --title $"Título" --textinputbox $"Descrição" $"Texto padrão" 400 300
+
+</fillin>
+ </item>
+
+ <item>
+  <displayprefix></displayprefix>
+  <match>Informacao_passiva</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Informação passiva, o número ao final é o tempo em segundos que o pop up deve ficar na tela
+kdialog --title $"Título"  --passivepopup  $"Descrição" 3
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Inserir_senha</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Inserir senha
+kdialog --title $"Título" --password $"Descrição"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Lista_de_opcoes_combobox</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Lista de opções
+kdialog --title $"Títulos" --combobox  $"Descrição" $"Opção 1" $"Opção 2" "Opção 3" --default  $"Opção 2" 
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Mensagem_informativa</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Exibe janela de diálogo com botão de ok
+kdialog --title $"Título" --msgbox $"Mensagem"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Menu_selecione_multiplas_opcoes</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Menu para selecionar multiplas opções
+kdialog --title $"Título"  --checklist  $"Descrição"  1 $"Maçãs" off  2 $"Tomates" on 3 $"Bananas" off
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Menu_selecione_uma_opcao</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Menu para selecionar uma opção
+kdialog --title $"Título"  --menu  $"Descrição"  1 $"Tomates" 2 $"Maçãs" 3 "Bananas"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Salvar_arquivo</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Diálogo para salvar um arquivo
+kdialog --title $"Título" --getsavefilename "$HOME/nome_do_arquivo" "*.*"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Selecionar_arquivos</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Diálogo para abrir um arquivo existente
+kdialog --title $"Selecione os arquivos desejados." --multiple --getopenfilename  "$HOME" "*.*" filter
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Selecionar_pasta</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Diálogo para selecionar uma pasta
+kdialog --title $"Título" --getexistingdirectory  $"Descrição" "$HOME" 
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>sim_nao</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Diálogo com botões sim e não para escolher
+kdialog --title $"Título" --yesno $"Sim ou não?"
+    if [ "$?" -ne 1 ]; then
+	echo $"Foi selecionado o sim"
+    else
+	echo $"Foi selecionado o não"
+    fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>sim_nao_cancelar</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Diálogos com botões sim, não e cancelar personalizáveis.
+kdialog --title $"Título" --yes-label $"Opção sim" --no-label $"Opção não" --cancel-label $"Opção cancelar" --warningyesnocancel  $"Descrição"
+
+case "$?" in
+    0)
+	echo "Sim"
+    ;;
+
+    1)
+	echo "Não"
+    ;;
+
+    2)
+	echo "Cancelar"
+    ;;
+esac
+
+</fillin>
+ </item>
+
+</snippets>

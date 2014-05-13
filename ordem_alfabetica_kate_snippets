@@ -1,0 +1,50 @@
+#!/bin/bash
+
+mkdir ~/.rename_kate_snippets 2> /dev/null
+
+cd ~/.rename_kate_snippets
+
+rm *
+
+origem="$(kdialog --title $"Selecione os arquivos desejados." --getopenfilename  "$HOME/.kde/share/apps/ktexteditor_snippets/" "*.xml" filter)"
+
+csplit --quiet --digits=4 --prefix=outfile "$origem" "/<item>/" "{*}"
+
+cat outfile0000 > big_ordenado_alfabeticamente_concluido
+
+#Exemplo de for, onde irá executar o trecho entre do e done uma vez para cada palavra listada no comando ls ~
+for i  in  $(ls ~/.rename_kate_snippets | sort); do
+
+#Confere se a igualdade é verdadeira
+if [ "$i" != "outfile0000" ]; then
+if [ "$i" != "big_ordenado_alfabeticamente_concluido" ]; then
+
+destino="$(grep "</match>" "$i" | sed 's|.*<match>||g;s|</match>.*||g;s|\/||g')"
+
+
+    mv "$i" "$destino"
+
+    
+fi
+fi
+done
+
+#Exemplo de for, onde irá executar o trecho entre do e done uma vez para cada palavra listada no comando ls ~
+for i  in  $(ls ~/.rename_kate_snippets | sort); do
+
+#Confere se a igualdade é verdadeira
+if [ "$i" != "outfile0000" ]; then
+if [ "$i" != "big_ordenado_alfabeticamente_concluido" ]; then
+
+    cat "$i" >> big_ordenado_alfabeticamente_concluido
+    
+fi
+fi
+
+done
+
+sed -i 's|</snippets>||g' big_ordenado_alfabeticamente_concluido
+
+echo '</snippets>' >> big_ordenado_alfabeticamente_concluido
+
+mv big_ordenado_alfabeticamente_concluido "$origem"
